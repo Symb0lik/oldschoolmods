@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mod Data Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .mod-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            display: flex;
+            gap: 20px;
+        }
+        .mod-logo {
+            flex-shrink: 0;
+        }
+        .mod-logo img {
+            width: 160px; /* thumb_320x180 scaled down */
+            height: 90px;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+        .mod-details {
+            flex-grow: 1;
+        }
+        .mod-details h2 {
+            margin-top: 0;
+            color: #007bff;
+        }
+        .mod-details h2 a {
+            color: inherit;
+            text-decoration: none;
+        }
+        .mod-details h2 a:hover {
+            text-decoration: underline;
+        }
+        .mod-summary {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .info-section {
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+        .info-section h3 {
+            margin-top: 0;
+            font-size: 1.1em;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        .info-section p, .info-section ul {
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+        .info-section strong {
+            color: #444;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        .submitter-avatar {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+        .download-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 12px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .download-link:hover {
+            background-color: #218838;
+        }
+        .footer-info {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #777;
+        }
+        .null-value {
+            color: #999;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mod Data Listing</h1>
+
+        <div id="mod-list">
+            <!-- Mod data will be inserted here by JavaScript -->
+        </div>
+
+        <div class="footer-info">
+            <p>Total Mods Displayed: <span id="total-mods">0</span></p>
+            <p>Data Fetched: <span id="fetch-date"></span></p>
+        </div>
+    </div>
+
+    <script>
+        const jsonData = {"data":[{"id":3245517,"game_id":5420,"status":1,"visible":1,"submitted_by":{"id":1,"name_id":"intense","username":"Scott","display_name_portal":null,"date_online":1748055986,"date_joined":1490000000,"avatar":{"filename":"avatar-scott.jpg","original":"https:\/\/image.modcdn.io\/members\/c4ca\/1\/avatar-scott.jpg","thumb_50x50":"https:\/\/thumb.modcdn.io\/members\/c4ca\/1\/crop_50x50\/avatar-scott.jpg","thumb_100x100":"https:\/\/thumb.modcdn.io\/members\/c4ca\/1\/crop_100x100\/avatar-scott.jpg"},"timezone":"","language":"","profile_url":"https:\/\/mod.io\/u\/intense"},"date_added":1691648691,"date_updated":1691648709,"date_live":1691648709,"maturity_option":0,"community_options":1,"credit_options":578,"monetization_options":0,"stock":0,"price":0,"tax":0,"logo":{"filename":"rs-party.jpg","original":"https:\/\/image.modcdn.io\/mods\/c7b8\/3245517\/rs-party.jpg","thumb_320x180":"https:\/\/thumb.modcdn.io\/mods\/c7b8\/3245517\/crop_320x180\/rs-party.jpg","thumb_640x360":"https:\/\/thumb.modcdn.io\/mods\/c7b8\/3245517\/crop_640x360\/rs-party.jpg","thumb_1280x720":"https:\/\/thumb.modcdn.io\/mods\/c7b8\/3245517\/crop_1280x720\/rs-party.jpg"},"homepage_url":null,"name":"Clan chat","name_id":"clan-chat","summary":"Adds the sender's rank to clan chat messages.","description":"","description_plaintext":"","metadata_blob":null,"profile_url":"https:\/\/mod.io\/g\/old-school-runescape\/m\/clan-chat","media":{"youtube":[],"sketchfab":[],"images":[]},"modfile":{"id":4154518,"mod_id":3245517,"date_added":1691648706,"date_updated":0,"date_scanned":1691648710,"virus_status":1,"virus_positive":0,"virustotal_hash":null,"filesize":589,"filesize_uncompressed":256,"filehash":{"md5":"07eff700ac20d9d0ce27f7b9de4ba494"},"filename":"demo-6qdi.zip","version":"1.5.1","changelog":null,"metadata_blob":"{\"metadata\":{\"api_version\":\"0.0.1\"}}","download":{"binary_url":"https:\/\/g-5420.modapi.io\/v1\/games\/5420\/mods\/3245517\/files\/4154518\/download","date_expires":1811128536},"platforms":[]},"dependencies":false,"platforms":[],"metadata_kvp":[],"tags":[{"name":"Chat","name_localized":"Chat","date_added":0}],"stats":{"mod_id":3245517,"popularity_rank_position":1,"popularity_rank_total_mods":8,"downloads_today":0,"downloads_total":59,"downloads_unique":0,"subscribers_total":0,"ratings_total":0,"ratings_positive":0,"ratings_negative":0,"ratings_percentage_positive":0,"ratings_weighted_aggregate":0,"ratings_display_text":"Unrated","date_expires":1748142004}},{"id":3245515,"game_id":5420,"status":1,"visible":1,"submitted_by":{"id":1,"name_id":"intense","username":"Scott","display_name_portal":null,"date_online":1748055986,"date_joined":1490000000,"avatar":{"filename":"avatar-scott.jpg","original":"https:\/\/image.modcdn.io\/members\/c4ca\/1\/avatar-scott.jpg","thumb_50x50":"https:\/\/thumb.modcdn.io\/members\/c4ca\/1\/crop_50x50\/avatar-scott.jpg","thumb_100x100":"https:\/\/thumb.modcdn.io\/members\/c4ca\/1\/crop_100x100\/avatar-scott.jpg"},"timezone":"","language":"","profile_url":"https:\/\/mod.io\/u\/intense"},"date_added":1691648441,"date_updated":1691648624,"date_live":1691648624,"maturity_option":0,"community_options":1,"credit_options":578,"monetization_options":0,"stock":0,"price":0,"tax":0,"logo":{"filename":"rs-farm.jpg","original":"https:\/\/image.modcdn.io\/mods\/b0d4\/3245515\/rs-farm.jpg","thumb_320x180":"https:\/\/thumb.modcdn.io\/mods\/b0d4\/3245515\/crop_320x180\/rs-farm.jpg","thumb_640x360":"https:\/\/thumb.modcdn.io\/mods\/b0d4\/3245515\/crop_640x360\/rs-farm.jpg","thumb_1280x720":"https:\/\/thumb.modcdn.io\/mods\/b0d4\/3245515\/crop_1280x720\/rs-farm.jpg"},"homepage_url":null,"name":"Tithe Farm","name_id":"tithe-farm","summary":"Displays timers for the farming patches within the Tithe farm minigame.","description":"","description_plaintext":"","metadata_blob":null,"profile_url":"https:\/\/mod.io\/g\/old-school-runescape\/m\/tithe-farm","media":{"youtube":[],"sketchfab":[],"images":[]},"modfile":{"id":4154517,"mod_id":3245515,"date_added":1691648621,"date_updated":0,"date_scanned":1691648625,"virus_status":1,"virus_positive":0,"virustotal_hash":null,"filesize":589,"filesize_uncompressed":256,"filehash":{"md5":"07eff700ac20d9d0ce27f7b9de4ba494"},"filename":"demo-3gh0.zip","version":"7.2.2","changelog":null,"metadata_blob":"{\"metadata\":{\"api_version\":\"0.0.1\"}}","download":{"binary_url":"https:\/\/g-5420.modapi.io\/v1\/games\/5420\/mods\/3245515\/files\/4154517\/download","date_expires":1811128536},"platforms":[]},"dependencies":false,"platforms":[],"metadata_kvp":[],"tags":[{"name":"Helper","name_localized":"Helper","date_added":0}],"stats":{"mod_id":3245515,"popularity_rank_position":2,"popularity_rank_total_mods":8,"downloads_today":0,"downloads_total":52,"downloads_unique":0,"subscribers_total":0,"ratings_total":0,"ratings_positive":0,"ratings_negative":0,"ratings_percentage_positive":0,"ratings_weighted_aggregate":0,"ratings_display_text":"Unrated","date_expires":1748142004}},{"id":3245493,"game_id":5420,"status":1,"visible":1,"submitted_by":{"id":1,"name_id":"intense","username":"Scott","display_name_portal":null,"date_online":1748055986,"date_joined":1490000000,"avatar":{"filename":"avatar-scott.jpg","original":"https:\/\/image.modcdn.io\/members\/c4ca\/1\/avatar-scott.jpg","thumb_50x50":"https:\/\/thumb.modcdn.io\/members\/c4ca\/1\/crop_50x50\/avatar-scott.jpg","thumb_100x100":"https:\/\/thumb.modcdn.io\/members\/c4ca\/1\/crop_100x100\/avatar-scott.jpg"},"timezone":"","language":"","profile_url":"https:\/\/mod.io\/u\/intense"},"date_added":1691647156,"date_updated":1691647813,"date_live":1691647813,"maturity_option":0,"community_options":1,"credit_options":578,"monetization_options":0,"stock":0,"price":0,"tax":0,"logo":{"filename":"rs-lobby.jpg","original":"https:\/\/image.modcdn.io\/mods\/03da\/3245493\/rs-lobby.jpg","thumb_320x180":"https:\/\/thumb.modcdn.io\/mods\/03da\/3245493\/crop_320x180\/rs-lobby.jpg","thumb_640x360":"https:\/\/thumb.modcdn.io\/mods\/03da\/3245493\/crop_640x360\/rs-lobby.jpg","thumb_1280x720":"https:\/\/thumb.modcdn.io\/mods\/03da\/3245493\/crop_1280x720\/rs-lobby.jpg"},"homepage_url":null,"name":"Chat commands","name_id":"chat-commands","summary":"Allows easy lookup of !level(s), !price(s), !kc(s), and !pb(s) from the chat box, changes colors to make comms easier and more powerful.","description":"","description_plaintext":"","metadata_blob":null,"profile_url":"https:\/\/mod.io\/g\/old-school-runescape\/m\/chat-commands","media":{"youtube":[],"sketchfab":[],"images":[]},"modfile":{"id":4154501,"mod_id":3245493,"date_added":1691647811,"date_updated":0,"date_scanned":1691647814,"virus_status":1,"virus_positive":0,"virustotal_hash":null,"filesize":589,"filesize_uncompressed":256,"filehash":{"md5":"07eff700ac20d9d0ce27f7b9de4ba494"},"filename":"demo-ajyh.zip","version":"4.2.1","changelog":null,"metadata_blob":null,"download":{"binary_url":"https:\/\/g-5420.modapi.io\/v1\/games\/5420\/mods\/3245493\/files\/4154501\/download","date_expires":1811128536},"platforms":[]},"dependencies":false,"platforms":[],"metadata_kvp":[],"tags":[{"name":"UI","name_localized":"UI","date_added":0},{"name":"Chat","name_localized":"Chat","date_added":0}],"stats":{"mod_id":3245493,"popularity_rank_position":4,"popularity_rank_total_mods":8,"downloads_today":0,"downloads_total":46,"downloads_unique":0,"subscribers_total":0,"ratings_total":0,"ratings_positive":0,"ratings_negative":0,"ratings_percentage_positive":0,"ratings_weighted_aggregate":0,"ratings_display_text":"Unrated","date_expires":1748142004}},{"id":3245492,"game_id":5420,"status":1,"visible":1,"submitted_by":{"id":1,"name_id":"intense","username":"Scott","display_name_portal":null,"date_online":1748055986,"date_joined":1490000000,"avatar":{"filename":"avatar-scott.jpg","original":"https:\/\/image.modcdn.io\/members\/c4ca\/1\/avatar-scott.jpg","thumb_50x50":"https:\/\/thumb.modcdn.io\/members\/c4ca\/1\/crop_50x50\/avatar-scott.jpg","thumb_100x100":"https:\/\/thumb.modcdn.io\/members\/c4ca\/1\/crop_100x100\/avatar-scott.jpg"},"timezone":"","language":"","profile_url":"https:\/\/mod.io\/u\/intense"},"date_added":1691647089,"date_updated":1691647106,"date_live":1691647106,"maturity_option":0,"community_options":1,"credit_options":578,"monetization_options":0,"stock":0,"price":0,"tax":0,"logo":{"filename":"rs-companion.jpg","original":"https:\/\/image.modcdn.io\/mods\/92a9\/3245492\/rs-companion.jpg","thumb_320x180":"https:\/\/thumb.modcdn.io\/mods\/92a9\/3245492\/crop_320x180\/rs-companion.jpg","thumb_640x360":"https:\/\/thumb.modcdn.io\/mods\/92a9\/3245492\/crop_640x360\/rs-companion.jpg","thumb_1280x720":"https:\/\/thumb.modcdn.io\/mods\/92a9\/3245492\/crop_1280x720\/rs-companion.jpg"},"homepage_url":null,"name":"NPC tagging","name_id":"npc-tagging","summary":"Need an escape? Tags and keeps track of an NPC.","description":"","description_plaintext":"","metadata_blob":null,"profile_url":"https:\/\/mod.io\/g\/old-school-runescape\/m\/npc-tagging","media":{"youtube":[],"sketchfab":[],"images":[]},"modfile":{"id":4154479,"mod_id":3245492,"date_added":1691647103,"date_updated":0,"date_scanned":1691647107,"virus_status":1,"virus_positive":0,"virustotal_hash":null,"filesize":589,"filesize_uncompressed":256,"filehash":{"md5":"07eff700ac20d9d0ce27f7b9de4ba494"},"filename":"demo-bfik.zip","version":"6.2.2","changelog":null,"metadata_blob":null,"download":{"binary_url":"https:\/\/g-5420.modapi.io\/v1\/games\/5420\/mods\/3245492\/files\/4154479\/download","date_expires":1811128536},"platforms":[]},"dependencies":false,"platforms":[],"metadata_kvp":[],"tags":[{"name":"UI","name_localized":"UI","date_added":0},{"name":"Information","name_localized":"Information","date_added":0},{"name":"Helper","name_localized":"Helper","date_added":0}],"stats":{"mod_id":3245492,"popularity_rank_position":5,"popularity_rank_total_mods":8,"downloads_today":0,"downloads_total":36,"downloads_unique":0,"subscribers_total":0,"ratings_total":0,"ratings_positive":0,"ratings_negative":0,"ratings_percentage_positive":0,"ratings_weighted_aggregate":0,"ratings_display_text":"Unrated","date_expires":1748142004}},{"id":3245490,"game_id":5420,"status":1,"visible":1,"submitted_by":{"id":1,"name_id":"intense","username":"Scott","display_name_portal":null,"date_online":1748055986,"date_joined":1490000000,"avatar":{"filename":"avatar-scott.jpg","original":"https:\/\/image.modcdn.io\/members\/c4ca\/1\/avatar-scott.jpg","thumb_50x50":"https:\/\/thumb.modcdn.io\/members\/c4ca\/1\/crop_50x50\/avatar-scott.jpg","thumb_100x100":"https:\/\/thumb.modcdn.io\/members\/c4ca\/1\/crop_100x100\/avatar-scott.jpg"},"timezone":"","language":"","profile_url":"https:\/\/mod.io\/u\/intense"},"date_added":1691647016,"date_updated":1691647032,"date_live":1691647032,"maturity_option":0,"community_options":1,"credit_options":578,"monetization_options":0,"stock":0,"price":0,"tax":0,"logo":{"filename":"rs-quest.jpg","original":"https:\/\/image.modcdn.io\/mods\/e880\/3245490\/rs-quest.jpg","thumb_320x180":"https:\/\/thumb.modcdn.io\/mods\/e880\/3245490\/crop_320x180\/rs-quest.jpg","thumb_640x360":"https:\/\/thumb.modcdn.io\/mods\/e880\/3245490\/crop_640x360\/rs-quest.jpg","thumb_1280x720":"https:\/\/thumb.modcdn.io\/mods\/e880\/3245490\/crop_1280x720\/rs-quest.jpg"},"homepage_url":null,"name":"Agility","name_id":"agility","summary":"Displays clickboxes for agility courses, and counts the number of laps you have done.","description":"","description_plaintext":"","metadata_blob":null,"profile_url":"https:\/\/mod.io\/g\/old-school-runescape\/m\/agility","media":{"youtube":[],"sketchfab":[],"images":[]},"modfile":{"id":4154476,"mod_id":3245490,"date_added":1691647030,"date_updated":0,"date_scanned":1691647034,"virus_status":1,"virus_positive":0,"virustotal_hash":null,"filesize":589,"filesize_uncompressed":256,"filehash":{"md5":"07eff700ac20d9d0ce27f7b9de4ba494"},"filename":"demo-boje.zip","version":"5.11.1","changelog":null,"metadata_blob":null,"download":{"binary_url":"https:\/\/g-5420.modapi.io\/v1\/games\/5420\/mods\/3245490\/files\/4154476\/download","date_expires":1811128536},"platforms":[]},"dependencies":false,"platforms":[],"metadata_kvp":[],"tags":[{"name":"Information","name_localized":"Information","date_added":0},{"name":"Helper","name_localized":"Helper","date_added":0}],"stats":{"mod_id":3245490,"popularity_rank_position":6,"popularity_rank_total_mods":8,"downloads_today":0,"downloads_total":35,"downloads_unique":0,"subscribers_total":0,"ratings_total":0,"ratings_positive":0,"ratings_negative":0,"ratings_percentage_positive":0,"ratings_weighted_aggregate":0,"ratings_display_text":"Unrated","date_expires":1748142004}},{"id":3245489,"game_id":5420,"status":1,"visible":1,"submitted_by":{"id":1,"name_id":"intense","username":"Scott","display_name_portal":null,"date_online":1748055986,"date_joined":1490000000,"avatar":{"filename":"avatar-scott.jpg","original":"https:\/\/image.modcdn.io\/members\/c4ca\/1\/avatar-scott.jpg","thumb_50x50":"https:\/\/thumb.modcdn.io\/members\/c4ca\/1\/crop_50x50\/avatar-scott.jpg","thumb_100x100":"https:\/\/thumb.modcdn.io\/members\/c4ca\/1\/crop_100x100\/avatar-scott.jpg"},"timezone":"","language":"","profile_url":"https:\/\/mod.io\/u\/intense"},"date_added":1691646946,"date_updated":1691676193,"date_live":1691646969,"maturity_option":0,"community_options":1,"credit_options":578,"monetization_options":0,"stock":0,"price":0,"tax":0,"logo":{"filename":"rs-boss.jpg","original":"https:\/\/image.modcdn.io\/mods\/330b\/3245489\/rs-boss.jpg","thumb_320x180":"https:\/\/thumb.modcdn.io\/mods\/330b\/3245489\/crop_320x180\/rs-boss.jpg","thumb_640x360":"https:\/\/thumb.modcdn.io\/mods\/330b\/3245489\/crop_640x360\/rs-boss.jpg","thumb_1280x720":"https:\/\/thumb.modcdn.io\/mods\/330b\/3245489\/crop_1280x720\/rs-boss.jpg"},"homepage_url":null,"name":"Action tooltips","name_id":"action-tooltips","summary":"Displays tooltips for actions under your mouse cursor - making attacks easier","description":"","description_plaintext":"","metadata_blob":null,"profile_url":"https:\/\/mod.io\/g\/old-school-runescape\/m\/action-tooltips","media":{"youtube":[],"sketchfab":[],"images":[]},"modfile":{"id":4154473,"mod_id":3245489,"date_added":1691646966,"date_updated":0,"date_scanned":1691646970,"virus_status":1,"virus_positive":0,"virustotal_hash":null,"filesize":589,"filesize_uncompressed":256,"filehash":{"md5":"07eff700ac20d9d0ce27f7b9de4ba494"},"filename":"demo-ag1u.zip","version":"1.5.1","changelog":null,"metadata_blob":null,"download":{"binary_url":"https:\/\/g-5420.modapi.io\/v1\/games\/5420\/mods\/3245489\/files\/4154473\/download","date_expires":1811128536},"platforms":[]},"dependencies":false,"platforms":[],"metadata_kvp":[],"tags":[{"name":"UI","name_localized":"UI","date_added":0},{"name":"Information","name_localized":"Information","date_added":0},{"name":"Helper","name_localized":"Helper","date_added":0}],"stats":{"mod_id":3245489,"popularity_rank_position":3,"popularity_rank_total_mods":8,"downloads_today":0,"downloads_total":46,"downloads_unique":0,"subscribers_total":1,"ratings_total":1,"ratings_positive":1,"ratings_negative":0,"ratings_percentage_positive":100,"ratings_weighted_aggregate":0.21,"ratings_display_text":"Positive","date_expires":1748142004}}],"result_count":6,"result_offset":0,"result_limit":100,"result_total":6};
+
+        function formatDate(timestamp) {
+            if (!timestamp) return '<span class="null-value">N/A</span>';
+            return new Date(timestamp * 1000).toLocaleDateString();
+        }
+
+        function formatFilesize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+        
+        function renderNull(value, placeholder = 'N/A') {
+            return value === null || value === undefined || value === "" ? `<span class="null-value">${placeholder}</span>` : value;
+        }
+
+        const modListElement = document.getElementById('mod-list');
+        const mods = jsonData.data;
+
+        mods.forEach(mod => {
+            const modCard = document.createElement('div');
+            modCard.className = 'mod-card';
+
+            const tagsHtml = mod.tags.map(tag => `<span class="tag">${renderNull(tag.name_localized, tag.name)}</span>`).join('');
+            const homepageUrlHtml = mod.homepage_url ? `<a href="${mod.homepage_url}" target="_blank">${mod.homepage_url}</a>` : renderNull(mod.homepage_url);
+
+            modCard.innerHTML = `
+                <div class="mod-logo">
+                    <a href="${mod.profile_url}" target="_blank">
+                        <img src="${mod.logo.thumb_320x180}" alt="${renderNull(mod.name, 'Mod Logo')}">
+                    </a>
+                </div>
+                <div class="mod-details">
+                    <h2><a href="${mod.profile_url}" target="_blank">${renderNull(mod.name, 'Untitled Mod')}</a> (ID: ${mod.id})</h2>
+                    <p class="mod-summary">${renderNull(mod.summary, 'No summary provided.')}</p>
+                    
+                    <div class="info-grid">
+                        <div class="info-section">
+                            <h3>General Info</h3>
+                            <p><strong>Name ID:</strong> ${renderNull(mod.name_id)}</p>
+                            <p><strong>Status:</strong> ${mod.status === 1 ? 'Active' : 'Inactive'}</p>
+                            <p><strong>Visible:</strong> ${mod.visible === 1 ? 'Yes' : 'No'}</p>
+                            <p><strong>Homepage:</strong> ${homepageUrlHtml}</p>
+                            <p><strong>Tags:</strong> ${tagsHtml || renderNull(null, 'No tags')}</p>
+                        </div>
+
+                        <div class="info-section">
+                            <h3>Dates</h3>
+                            <p><strong>Date Added:</strong> ${formatDate(mod.date_added)}</p>
+                            <p><strong>Date Updated:</strong> ${formatDate(mod.date_updated)}</p>
+                            <p><strong>Date Live:</strong> ${formatDate(mod.date_live)}</p>
+                        </div>
+
+                        <div class="info-section">
+                            <h3>Submitter</h3>
+                            <p>
+                                <a href="${mod.submitted_by.profile_url}" target="_blank">
+                                    <img src="${mod.submitted_by.avatar.thumb_50x50}" alt="${renderNull(mod.submitted_by.username)}" class="submitter-avatar">
+                                    <strong>${renderNull(mod.submitted_by.username, 'Unknown User')}</strong>
+                                </a>
+                                (ID: ${mod.submitted_by.id})
+                            </p>
+                            <p><strong>Joined:</strong> ${formatDate(mod.submitted_by.date_joined)}</p>
+                            <p><strong>Last Online:</strong> ${formatDate(mod.submitted_by.date_online)}</p>
+                        </div>
+
+                        <div class="info-section">
+                            <h3>Mod File</h3>
+                            <p><strong>Filename:</strong> ${renderNull(mod.modfile.filename)} (v${renderNull(mod.modfile.version, 'N/A')})</p>
+                            <p><strong>Filesize:</strong> ${formatFilesize(mod.modfile.filesize)} (Uncompressed: ${formatFilesize(mod.modfile.filesize_uncompressed)})</p>
+                            <p><strong>MD5 Hash:</strong> ${renderNull(mod.modfile.filehash?.md5)}</p>
+                            <p><strong>Virus Scan:</strong> Status ${mod.modfile.virus_status} (${mod.modfile.virus_positive > 0 ? 'Positive' : 'Clean'})</p>
+                            <p><strong>API Version (Meta):</strong> ${renderNull(JSON.parse(mod.modfile.metadata_blob || '{}').metadata?.api_version)}</p>
+                            <a href="${mod.modfile.download.binary_url}" target="_blank" class="download-link">Download Mod</a>
+                        </div>
+                        
+                        <div class="info-section">
+                            <h3>Statistics</h3>
+                            <p><strong>Popularity Rank:</strong> ${renderNull(mod.stats.popularity_rank_position)} of ${renderNull(mod.stats.popularity_rank_total_mods)}</p>
+                            <p><strong>Total Downloads:</strong> ${renderNull(mod.stats.downloads_total)}</p>
+                            <p><strong>Subscribers:</strong> ${renderNull(mod.stats.subscribers_total)}</p>
+                            <p><strong>Rating:</strong> ${renderNull(mod.stats.ratings_display_text)} (${mod.stats.ratings_positive} Pos / ${mod.stats.ratings_negative} Neg)</p>
+                            <p><strong>Rating % Positive:</strong> ${renderNull(mod.stats.ratings_percentage_positive)}%</p>
+                        </div>
+
+                        <div class="info-section">
+                            <h3>Options & Details</h3>
+                            <p><strong>Maturity Option:</strong> ${mod.maturity_option === 0 ? 'SFW' : 'NSFW (check value)'}</p>
+                            <p><strong>Community Options:</strong> ${renderNull(mod.community_options)}</p>
+                            <p><strong>Credit Options:</strong> ${renderNull(mod.credit_options)}</p>
+                            <p><strong>Monetization:</strong> ${mod.monetization_options === 0 ? 'Not monetized' : 'Monetized (check value)'}</p>
+                            <p><strong>Price:</strong> $${renderNull(mod.price)} (Tax: ${renderNull(mod.tax)})</p>
+                            <p><strong>Stock:</strong> ${renderNull(mod.stock)}</p>
+                            <p><strong>Dependencies:</strong> ${mod.dependencies ? 'Yes' : 'No'}</p>
+                            <p><strong>Platforms:</strong> ${mod.platforms.length > 0 ? mod.platforms.join(', ') : renderNull(null, 'None specified')}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            modListElement.appendChild(modCard);
+        });
+
+        document.getElementById('total-mods').textContent = jsonData.result_total;
+        document.getElementById('fetch-date').textContent = new Date().toLocaleString();
+
+    </script>
+</body>
+</html>
